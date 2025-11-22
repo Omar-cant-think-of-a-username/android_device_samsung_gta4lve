@@ -1,4 +1,4 @@
-# Android device tree for samsung SM-T509 (gta4lve)
+# TWRP device tree for samsung SM-T509 (gta4lve)
 
 ```
 #
