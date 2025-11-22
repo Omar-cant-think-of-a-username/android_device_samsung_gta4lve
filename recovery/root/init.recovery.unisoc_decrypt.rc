@@ -5,6 +5,24 @@ on init
     start servicemanager
     start hwservicemanager
 
+# We need vold early for metadata encryption
+on early-fs
+    start vold
+
+on fs
+    wait /dev/block/platform/soc/${ro.boot.bootdevice}
+    symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
+    
+    export ANDROID_ROOT /system_root
+
+on late-fs
+   … 
+    # Wait for keymaster
+    exec_start wait_for_keymaster
+
+    # Mount RW partitions which need run fsck
+    mount_all /system/etc/recovery.fstab --late
+
 
 service keystore_auth /system/bin/keystore_auth
     oneshot
