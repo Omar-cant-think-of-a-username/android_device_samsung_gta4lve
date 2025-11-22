@@ -1,6 +1,10 @@
 on late-init
     start keystore2
 
+on init
+    start servicemanager
+    start hwservicemanager
+
 
 service keystore_auth /system/bin/keystore_auth
     oneshot
@@ -15,6 +19,20 @@ service keystore2 /system/bin/keystore2 /tmp/misc/keystore
     group keystore readproc log
     writepid /dev/cpuset/foreground/tasks
     seclabel u:r:recovery:s0
+
+service servicemanager /system/bin/servicemanager
+    user root
+    group root readproc
+    disabled
+    seclabel u:r:recovery:s0
+
+service hwservicemanager /system/bin/hwservicemanager
+    user root
+    group root
+    onrestart setprop hwservicemanager.ready false
+    disabled
+    seclabel u:r:recovery:s0
+
 
 #service name must be < 16
 service vendor.rpmbproxy /vendor/bin/sprdstorageproxyd -f rpmb -d /dev/trusty-ipc-dev0 -p /data/vendor/sprd_ss -r /dev/mmcblk0rpmb
