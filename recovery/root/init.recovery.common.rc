@@ -189,6 +189,14 @@ on boot
     chmod 660 /sys/class/power_supply/battery/input_current_limit
     chmod 660 /sys/class/power_supply/battery/constant_charge_current
 
+   #for vibration
+    #HS03 code for P211014-07931 by zhangziyi at 2021/10/18 start
+    chmod 664 /sys/class/leds/vibrator/state
+    chmod 664 /sys/class/leds/vibrator/duration
+    chmod 664 /sys/class/leds/vibrator/activate
+    #HS03 code for P211014-07931 by zhangziyi at 2021/10/18 end
+
+
     # Grip Sensor for unisoc sensor hub list
     chown system radio /sys/class/sensors/grip_sensor/name
     chown system radio /sys/class/sensors/grip_sensor/vendor
