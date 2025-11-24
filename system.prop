@@ -1,5 +1,5 @@
 ro.display.series=Samsung Galaxy Tab A7 10.4
-ro.board.platform=P15945AA1
+#ro.board.platform=P15945AA1
 ro.product.system.brand=samsung
 ro.product.system.device=gta4lve
 ro.product.system.manufacturer=samsung
