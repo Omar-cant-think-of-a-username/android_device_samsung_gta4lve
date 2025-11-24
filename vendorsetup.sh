@@ -10,7 +10,6 @@ add_lunch_combo twrp_gta4lve-userdebug
 add_lunch_combo twrp_gta4lve-eng
 # Flashlight
 export OF_FLASHLIGHT_ENABLE="0"
-export OF_FL_PATH1="/system/flashlight"
 export OF_USE_GREEN_LED="0"
 
 export OF_NO_TREBLE_COMPATIBILITY_CHECK=1
