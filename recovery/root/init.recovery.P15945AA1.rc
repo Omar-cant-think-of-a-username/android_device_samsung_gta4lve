@@ -2,11 +2,20 @@
 import /init.recovery.common.rc
 import /init.recovery.unisoc_decrypt.rc
 import /init.recovery.usb.rc
+import /init.storage.rc
 
 
 
 on init
     export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw:/system/lib64/hw
+
+#from stck system
+   start watchdogd
+    mkdir /efs 0700 system system
+    mkdir /mnt/vendor/efs 0771 radio system
+    symlink /dev/block/by-name/param /dev/block/param
+    symlink /dev/block/by-name/steady /dev/block/steady
+    symlink /dev/block/by-name/persistent /dev/block/persistent
 
 on boot
     start boot-hal-1-1
@@ -14,3 +23,10 @@ on boot
 
 on post-fs-data
     mkdir /data/vendor/sprd_ss 0770 system system
+#from stock system
+# Set watchdog timer to 30 seconds and pet it every 10 seconds to get a 20 second margin
+service watchdogd /system/bin/watchdogd 10 30
+    class core
+    oneshot
+    seclabel u:r:watchdogd:s0
+
