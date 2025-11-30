@@ -1,3 +1,9 @@
+on early-init
+    setprop sys.usb.configfs 1
+    setprop sys.usb.ffs.ready 1
+    setprop sys.usb.config adb
+
+
 on init
     setprop sys.usb.configfs 1
     setprop sys.usb.ffs.ready 1
