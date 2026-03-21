@@ -19,6 +19,8 @@ on init
     setprop sys.usb.configfs 1
     setprop sys.usb.config adb
 
+    write /sys/module/smsg/parameters/debug_enable 1  #from stock init
+
 on fs && property:sys.usb.configfs=1
     mount configfs none /config
     mkdir /config/usb_gadget/g1 0770 shell shell
